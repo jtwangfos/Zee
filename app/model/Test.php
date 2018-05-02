@@ -1,7 +1,7 @@
 <?php
 namespace app\model;
 
-use jt\base\Model;
+use jt\base\ActiveRecord;
 
 /**
  * Created by PhpStorm.
@@ -10,6 +10,7 @@ use jt\base\Model;
  * Time: 下午10:51
  */
 
-class Test extends Model {
+class Test extends ActiveRecord {
+    protected static $tableName = 'c';
 
 }

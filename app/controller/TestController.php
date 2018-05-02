@@ -15,12 +15,9 @@ class TestController extends Controller {
 
     public function helloAction() {
         $model = new Test;
-        $oh = 'OH';
-        $word = 'Yeah!';
+        $one = $model->save();
         return $this->render('hello', [
-            'oh' => $oh,
-            'word' => $word,
-            'test' => $model,
+            'one' => $one,
         ]);
     }
 }

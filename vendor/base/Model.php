@@ -1,9 +1,9 @@
 <?php
 namespace jt\base;
 
-class Model {
+class Model extends \PDO {
 
-    protected $db;
+    protected static $db;
 
 	public function __construct() {
 	    $config = require(__DIR__ . '/../../config/config.php');
@@ -13,13 +13,10 @@ class Model {
 	    $password = $dbConfig['password'];
 	    $options['charset'] = $dbConfig['charset'];
 	    try {
-	        $this->db = new \PDO($dsn, $username, $password, $options);
+	        self::$db = new \PDO($dsn, $username, $password, $options);
 	    } catch (\PDOException $e) {
 	        echo $e->getMessage();
 	    }
-    }
-    public function tableName() {
-	    
     }
 
 
