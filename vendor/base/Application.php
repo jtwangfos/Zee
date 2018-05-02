@@ -13,6 +13,9 @@ class Application {
     protected $controllerName;
     protected $actionName;
 
+    protected $defaultController = 'index';
+    protected $defaultAction = 'index';
+
     const CONTROLLER_DIR = __DIR__ . '/../../app/controller/';
     const CONTROLLER_NAMESPACE = "app\\controller\\";
 
@@ -28,11 +31,11 @@ class Application {
     // 处理路由
     private function route() {
         $req = $_REQUEST;
-        $this->controller = $req['controller'];
+        $this->controller = $req['controller'] ? $req['controller'] : $this->defaultController;
         $this->controllerName = ucfirst($this->controller) . "Controller";
         unset($req['controller']);
 
-        $this->action = $req['action'];
+        $this->action = $req['action'] ? $req['action'] : $this->defaultAction;
         $this->actionName = $this->action . "Action";
         unset($req['action']);
 
@@ -44,6 +47,7 @@ class Application {
         $this->autoloadController();
         $class = self::CONTROLLER_NAMESPACE . $this->controllerName;
         $action = $this->actionName;
+
         return (new $class($this))->$action();
     }
 
