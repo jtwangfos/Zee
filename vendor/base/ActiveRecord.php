@@ -8,9 +8,12 @@ use jt\base\DbObject;
  * Date: 2018/5/2
  * Time: 下午5:09
  */
+use jt\base\DbMapper;
+
 class ActiveRecord extends Model {
 
     protected static $tableName;
+    protected static $primaryKey = 'id';
 
     public function tableName() {}
 
@@ -24,28 +27,27 @@ class ActiveRecord extends Model {
 
     // 通过主键获取记录
     public static function findById($id) {
-        $sql = "SELECT * FROM `" . static::$tableName . "` WHERE `id` = :id";
+        $sql = "SELECT * 
+                FROM `" . static::$tableName .
+                "` WHERE `" . static::$primaryKey ."` = :" . static::$primaryKey;
         try {
             $stmt = self::$db->prepare($sql);
-            $stmt->execute([":id" => $id]);
-            $res = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            $stmt->execute([":" . static::$primaryKey => $id]);
+            $res = $stmt->fetch(\PDO::FETCH_ASSOC);
         } catch (\PDOException $e) {
             echo $e->getMessage();
         }
-        return new DbObject($res[0]);
+        return new DbObject($res);
     }
 
-    // 增
+    // 保存
     public function save() {
-        var_dump($this->tableAttributes());
-    }
+        $db_mapper = new DbMapper($this);
+        $post = $_POST;
+        foreach ($post as $attr => $val) {
+            $db_mapper->$attr = $val;
+        }
 
-    // 获取当前活动记录对应表的字段
-    public function tableAttributes() {
-        $get_table_attributes_sql = "SELECT * FROM `" . static::$tableName . "` LIMIT 1";
-        $stmt = self::$db->query($get_table_attributes_sql);
-        $stmt->execute();
-        $table_attributes = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-        return $table_attributes;
+
     }
 }

@@ -17,7 +17,7 @@ class TestController extends Controller {
         $model = new Test;
         $one = $model->save();
         return $this->render('hello', [
-            'one' => $one,
+
         ]);
     }
 }

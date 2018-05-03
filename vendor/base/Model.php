@@ -1,7 +1,7 @@
 <?php
 namespace jt\base;
 
-class Model extends \PDO {
+class Model {
 
     protected static $db;
 
@@ -18,7 +18,6 @@ class Model extends \PDO {
 	        echo $e->getMessage();
 	    }
     }
-
 
 
 
