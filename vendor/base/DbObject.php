@@ -10,10 +10,11 @@ class DbObject {
     /*
      * 该类用于将数据库查询的结果封装成对象
      */
-
+    public $className;
     public $attributes;
 
-    public function __construct($attributes) {
+    public function __construct($className, $attributes) {
+        $this->className = $className;
         $this->setAttributes($attributes);
     }
 

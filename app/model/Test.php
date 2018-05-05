@@ -11,8 +11,10 @@ use jt\base\ActiveRecord;
  */
 
 class Test extends ActiveRecord {
+
     protected static $tableName = 'c';
 
-    public $d;
+
+
 
 }
