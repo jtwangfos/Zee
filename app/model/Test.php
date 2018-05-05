@@ -14,7 +14,13 @@ class Test extends ActiveRecord {
 
     protected static $tableName = 'c';
 
+    public $a;
 
+    public $b;
+
+    public $d;
+
+    public $e;
 
 
 }

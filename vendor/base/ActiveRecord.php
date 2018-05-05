@@ -44,12 +44,15 @@ class ActiveRecord extends Model {
 
     // 保存
     public function save() {
-        $db_mapper = new DbMapper($this);
         $post = $_POST;
-//        if ($db_mapper->insert($post)) {
-//            return true;
-//        }
-//        return false;
+        $dbMapper = new DbMapper($this);
+        foreach ($post as $name => $value) {
+            $dbMapper->$name = $value;
+        }
+        if ($this->insert($dbMapper)) {
+            return true;
+        }
+        return false;
     }
 
     // 具体执行SQL SELECT 的方法
@@ -71,13 +74,23 @@ class ActiveRecord extends Model {
     }
 
     // 执行SQL INSERT 的方法
-    protected function insert() {
-
+    protected function insert(DbMapper $dbMapper) {
+        $Sql = new Sql($dbMapper);
+        $post = $dbMapper->attributes;
+        if ($this->query($Sql->insert($post))) {
+            return true;
+        }
+        return false;
     }
 
     // 执行SQL UPDATE 的方法
     protected function update() {
 
+    }
+
+    // 执行SQL语句的方法
+    public function query($sql) {
+        return self::$db->query($sql);
     }
 
     // 执行SQL DELETE 的方法
