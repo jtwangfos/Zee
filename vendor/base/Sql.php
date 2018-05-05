@@ -8,6 +8,9 @@ namespace jt\base;
  * Time: 上午11:45
  */
 class Sql {
+    /*
+     * Sql类用于对sql语句的封装
+     */
 
     protected $dbMapper;
     public $sql = [];
