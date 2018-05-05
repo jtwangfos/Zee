@@ -1,8 +1,3 @@
-<html>
-<head>
-
-</head>
-<body>
-    <p><?php var_dump($res) ?></p>
-</body>
-</html>
+<p>This is hello.php</p>
+<p>And this is also hello.php</p>
+<p><?php var_dump($res) ?></p>
