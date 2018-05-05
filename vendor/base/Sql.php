@@ -46,6 +46,9 @@ class Sql {
     public function where(Array $where) {
         $this->sql['WHERE'] = self::KEY_WORD_WHERE;
         $this->sql['where'] = $where;
+        if ($this->sql['DELETE'] === self::KEY_WORD_DELETE) {
+            return $this->dbMapper->activeRecordObject->execDelete($this, $this->assign());
+        }
         return $this->dbMapper->activeRecordObject;
     }
 
@@ -72,7 +75,7 @@ class Sql {
         $first_key_word = $this->sql['SELECT'] === self::KEY_WORD_SELECT ? self::KEY_WORD_SELECT : self::KEY_WORD_DELETE;
         $second_key_word = $this->sql['WHERE'] === self::KEY_WORD_WHERE ? self::KEY_WORD_WHERE : '';
         $sql = '';
-        $sql .= $first_key_word === self::KEY_WORD_SELECT ? $this->process($this->sql['select'], $sql, $first_key_word) : '';
+        $sql .= $first_key_word === self::KEY_WORD_SELECT ? $this->process($this->sql['select'], $sql, $first_key_word) : self::KEY_WORD_DELETE;
         $table = $this->dbMapper->activeRecordObject->tableName();
         $sql .= ' ' . self::KEY_WORD_FROM . " `$table` ";
         $sql = isset($this->sql['where']) ? $this->process($this->sql['where'], $sql, $second_key_word) : '';
@@ -90,7 +93,7 @@ class Sql {
         } elseif ($key_word === self::KEY_WORD_WHERE) {
             $times = 1;
             foreach ($attributes as $name => $value) {
-                $sql .= " :$name = $value";
+                $sql .= " $name = :$name";
                 if ($length > 1) {
                     if ($times < $length) {
                         $sql .= " AND";

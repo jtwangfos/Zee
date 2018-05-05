@@ -6,6 +6,7 @@ Class View {
 
     protected $app;
     protected $variable;
+    protected $defalutLayout = 'layout.php';
 
     const VIEW_DIR = __DIR__ . "/../../app/view/";
 
@@ -32,11 +33,18 @@ Class View {
     protected function display($template, $params) {
         $this->assign($params);
         extract($this->variable);
-        include $template;
+        $content = $template;
+        $layout = self::VIEW_DIR . $this->defalutLayout;
+        include $layout;
     }
 
     // 获取action对应的页面
     protected function getViewPath($template) {
         return self::VIEW_DIR . $this->app->controller . '/' . $template . '.php';
+    }
+
+    // layout头部
+    protected function head() {
+
     }
 }

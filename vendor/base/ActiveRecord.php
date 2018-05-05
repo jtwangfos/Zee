@@ -35,25 +35,28 @@ class ActiveRecord extends Model {
     }
 
     public function one() {
-        return $this->selete(self::$Sql, $action = 'one');
+        return $this->execSelect(self::$Sql, $action = 'one');
     }
 
     public function all() {
-        return $this->selete(self::$Sql, $action = 'all');
+        return $this->execSelect(self::$Sql, $action = 'all');
     }
 
     // 保存
     public function save() {
-        $db_mapper = new DbMapper($this);
         $post = $_POST;
-//        if ($db_mapper->insert($post)) {
-//            return true;
-//        }
-//        return false;
+        $dbMapper = new DbMapper($this);
+        foreach ($post as $name => $value) {
+            $dbMapper->$name = $value;
+        }
+        if ($this->insert($dbMapper)) {
+            return true;
+        }
+        return false;
     }
 
-    // 执行SQL SELECT / DELETE操作
-    protected function selete(Sql $sql, $action) {
+    // 具体执行SQL SELECT 的方法
+    protected function execSelect(Sql $sql, $action) {
         $prepare = $action == 'one' ? $sql->one()['sql'] : $sql->one()['sql'];
         $action = $action == 'all' ? $sql->all()['action'] : $sql->all()['action'];
         $stmt = self::$db->prepare($prepare);
@@ -62,15 +65,40 @@ class ActiveRecord extends Model {
         $res = $stmt->$action(\PDO::FETCH_ASSOC);
         return new DbObject(get_class($this), $res);
     }
+    // 具体执行SQL DELETE 的方法
+    public function execDelete(Sql $sql, $_sql) {
+        $stmt = self::$db->prepare($_sql);
+        $where = $this->getWhereArr($sql->sql['where']);
+        $res = $stmt->execute($where);
+        return $res ? true : false;
+    }
 
-    // 执行SQL INSERT 操作
-    protected function insert() {
+    // 执行SQL INSERT 的方法
+    protected function insert(DbMapper $dbMapper) {
+        $Sql = new Sql($dbMapper);
+        $post = $dbMapper->attributes;
+        if ($this->query($Sql->insert($post))) {
+            return true;
+        }
+        return false;
+    }
+
+    // 执行SQL UPDATE 的方法
+    protected function update() {
 
     }
 
-    // 执行SQL UPDATE 操作
-    protected function update() {
+    // 执行SQL语句的方法
+    public function query($sql) {
+        return self::$db->query($sql);
+    }
 
+    // 执行SQL DELETE 的方法
+    public static function delete() {
+        $dbMapper = new DbMapper(new static());
+        self::$Sql = new Sql($dbMapper);
+        self::$Sql->delete();
+        return self::$Sql;
     }
 
     // 获取带占位符的where数组

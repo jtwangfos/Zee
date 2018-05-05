@@ -14,9 +14,10 @@ use app\model\Test;
 class TestController extends Controller {
 
     public function helloAction() {
-        $res = Test::find(['id', 'a'])->where(['a' => 2, 'e' => 5])->all();
+//        $res = Test::delete()->where(['id' => 1]);
+//        $res = Test::find(['a', 'b', 'id'])->where(['d' => 4, 'e' => 5])->one();
         return $this->render('hello', [
-            'res' => $res,
+//            'res' => $res,
         ]);
     }
 }
