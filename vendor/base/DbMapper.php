@@ -1,4 +1,5 @@
 <?php
+
 namespace jt\base;
 /**
  * Created by PhpStorm.
@@ -21,7 +22,8 @@ class DbMapper {
     // 自动生成set/get的方法处理成员变量
     public function __call($name, $arguments) {
         if (preg_match('/^(set|get)(\w+)/', strtolower($name), $match)
-            && $attribute = $this->validateAttribute($match[2])) {
+            && $attribute = $this->validateAttribute($match[2])
+        ) {
             if ($match[1] == 'set') {
                 $this->$attribute = $arguments[1];
             } else {
@@ -42,13 +44,13 @@ class DbMapper {
 
     // 只能通过set方法操作成员变量
     protected function __set($name, $value) {
-        $set = 'set'.$name;
+        $set = 'set' . $name;
         $this->$set($name, $value);
     }
 
     // 只能通过get方法操作成员变量
     protected function __get($name) {
-        $get = 'get'.$name;
+        $get = 'get' . $name;
         $this->$get($name);
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace jt\base;
 /**
  * Created by PhpStorm.

@@ -1,5 +1,7 @@
 <?php
+
 namespace jt\base;
+
 /**
  * Created by PhpStorm.
  * User: witness
@@ -67,7 +69,7 @@ class ActiveRecord extends Model {
     }
 
     // 执行SQL UPDATE 操作
-    protected function update () {
+    protected function update() {
 
     }
 

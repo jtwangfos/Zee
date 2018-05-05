@@ -53,14 +53,14 @@ class Sql {
 
     public function one() {
         return [
-            'sql' => $this->assign(),
+            'sql'    => $this->assign(),
             'action' => 'fetch',
         ];
     }
 
     public function all() {
         return [
-            'sql' => $this->assign(),
+            'sql'    => $this->assign(),
             'action' => 'fetchAll',
         ];
     }
@@ -90,7 +90,7 @@ class Sql {
                 $sql .= " :$name = $value";
                 if ($length > 1) {
                     if ($times < $length) {
-                        $sql.= " AND";
+                        $sql .= " AND";
                         $times++;
                     }
                 }
