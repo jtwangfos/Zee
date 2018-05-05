@@ -15,18 +15,24 @@ Class View {
 
     // 渲染页面
     public function render($template, $params =[]) {
-        $html = $this->getViewPath($template);
-        $this->assign($params);
-        include $html;
+        $tpl = $this->getViewPath($template);
+        $this->display($tpl, $params);
     }
 
-    // 为传入页面的变量赋值
+    // 向视图类中注入控制器传向视图的变量
     protected function assign($params) {
         if (!empty($params)) {
             foreach ($params as $k => $v) {
                 $this->variable[$k] = $v;
             }
         }
+    }
+
+    // 包含模板
+    protected function display($template, $params) {
+        $this->assign($params);
+        extract($this->variable);
+        include $template;
     }
 
     // 获取action对应的页面

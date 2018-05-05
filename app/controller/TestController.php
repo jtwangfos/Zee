@@ -14,13 +14,9 @@ use app\model\Test;
 class TestController extends Controller {
 
     public function helloAction() {
-        $model = new Test;
-        $oh = 'OH';
-        $word = 'Yeah!';
+        $res = Test::find(['id', 'a'])->where(['a' => 2, 'e' => 5])->all();
         return $this->render('hello', [
-            'oh' => $oh,
-            'word' => $word,
-            'test' => $model,
+            'res' => $res,
         ]);
     }
 }
