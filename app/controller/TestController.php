@@ -16,8 +16,13 @@ class TestController extends Controller {
     public function helloAction() {
 //        $res = Test::delete()->where(['id' => 1]);
 //        $res = Test::find(['a', 'b', 'id'])->where(['d' => 4, 'e' => 5])->one();
+        $model = new Test();
+        if ($this->isPost()) {
+            var_dump($_POST);
+        }
         return $this->render('hello', [
 //            'res' => $res,
+            'model' => $model,
         ]);
     }
 }

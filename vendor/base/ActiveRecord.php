@@ -18,6 +18,10 @@ class ActiveRecord extends Model {
     protected static $primaryKey = 'id';
     protected static $Sql;
 
+    public function __construct() {
+        parent::__construct();
+    }
+
     public function tableName() {
         return static::$tableName;
     }
@@ -109,5 +113,12 @@ class ActiveRecord extends Model {
         }
         return $arr;
     }
+
+    // setter
+    public function __set($name, $value) {
+
+    }
+
+    // getter
 
 }

@@ -10,23 +10,14 @@ namespace jt\base;
 class Request implements IRequest {
 
     public function isPost() {
-        return ($_SERVER['REQUEST_METHOD'] == 'POST'
-            && checkurlHash($GLOBALS['verify'])
-            && (empty($_SERVER['HTTP_REFERER'])
-                || preg_replace("~https?:\/\/([^\:\/]+).*~i", "\\1", $_SERVER['HTTP_REFERER']) == preg_replace("~([^\:]+).*~", "\\1", $_SERVER['HTTP_HOST']))) ? true : false;
+        return isset($_SERVER['REQUEST_METHOD']) && strtoupper($_SERVER['REQUEST_METHOD']) == 'POST';
     }
 
     public function isGet() {
-        return $_SERVER['REQUEST_METHOD'] == 'GET' ? true : false;
+        return isset($_SERVER['REQUEST_METHOD']) && strtoupper($_SERVER['REQUEST_METHOD']) == 'GET';
     }
 
     public function isAjax() {
-        if (isset($_SERVER['HTTP_X_REQUESTED_WITH'])
-            && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'
-        ) {
-            return true;
-        } else {
-            return false;
-        }
+        return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtoupper($_SERVER['HTTP_X_REQUESTED_WITH']) == 'XMLHTTPREQUEST';
     }
 }
