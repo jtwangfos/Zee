@@ -8,7 +8,6 @@ class Application {
 
     public $controller;
     public $action;
-    public $params;
 
     protected $controllerName;
     protected $actionName;
@@ -16,10 +15,16 @@ class Application {
     protected $defaultController = 'index';
     protected $defaultAction = 'index';
 
+    public $request;
+    public $response;
+    public $params;
+
     const CONTROLLER_DIR = __DIR__ . '/../../app/controller/';
     const CONTROLLER_NAMESPACE = "app\\controller\\";
 
     public function __construct($config) {
+        $this->request = new Request();
+        $this->response = new Response();
         $this->config = $config;
         $this->route();
     }
@@ -30,16 +35,48 @@ class Application {
 
     // 处理路由
     private function route() {
-        $req = $_REQUEST;
-        $this->controller = $req['controller'] ? $req['controller'] : $this->defaultController;
-        $this->controllerName = ucfirst($this->controller) . "Controller";
-        unset($req['controller']);
+        $uri = $this->parseUri();
+        $controller = $this->parseRoute($uri['controller']);
+        $action = $this->parseRoute($uri['action']);
+        $params = $uri['params'];
 
-        $this->action = $req['action'] ? $req['action'] : $this->defaultAction;
-        $this->actionName = $this->action . "Action";
-        unset($req['action']);
+        $this->controller = $controller ? $controller : $this->defaultController;
+        $this->controllerName = $this->controller . "Controller";
 
-        $this->params = $req;
+        $this->action = $action ? $action : $this->defaultAction;
+        $this->actionName = 'action' . $this->action;
+
+        if ($this->request->isGet()) {
+            $this->params = $params;
+        }
+    }
+
+    // 处理uri
+    protected function parseUri() {
+        $uri_arr = explode('/', $_SERVER['REQUEST_URI']);
+        array_shift($uri_arr);
+        $controller = array_shift($uri_arr);
+        $action = array_shift($uri_arr);
+        return [
+            'controller' => $controller,
+            'action' => $action,
+            'params' => $uri_arr,
+        ];
+    }
+
+    // 处理控制器和操作的名字
+    protected function parseRoute($route) {
+        $explode = explode('-', $route);
+        foreach ($explode as $value) {
+            $res[] = ucfirst($value);
+        }
+        $impode = implode('', $res);
+        return $impode;
+    }
+
+    // 处理url中的参数
+    protected function parseParams($params) {
+
     }
 
     // 实例化控制器
@@ -47,8 +84,12 @@ class Application {
         $this->autoloadController();
         $class = self::CONTROLLER_NAMESPACE . $this->controllerName;
         $action = $this->actionName;
-
-        return (new $class($this))->$action();
+        $application = new $class($this);
+        if (!empty($this->params)) {
+            call_user_func_array([$application, $action], $this->params);
+        } else {
+            return $application->$action();
+        }
     }
 
     // 控制器类的自动加载
@@ -72,4 +113,5 @@ class Application {
         };
         spl_autoload_register($autoloadController);
     }
+
 }

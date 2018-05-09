@@ -7,11 +7,13 @@ use jt\base\Request;
 Class Controller implements IRequest {
 
     protected $app;
-    protected $request;
+    public $request;
+    public $response;
 
     public function __construct(Application $application) {
         $this->app = $application;
-        $this->request = new Request;
+        $this->request = $application->request;
+        $this->response = $application->response;
     }
 
     // 渲染页面
@@ -29,6 +31,10 @@ Class Controller implements IRequest {
 
     public function isAjax() {
         return $this->request->isAjax();
+    }
+
+    public function redirect($url) {
+        $this->response->redirect($url);
     }
 
 }
