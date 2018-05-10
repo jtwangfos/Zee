@@ -31,11 +31,11 @@ class Field {
     protected function ifAttributesExists(ActiveRecord $activeRecord, $attributeName) {
         try {
             if (!in_array($attributeName, array_keys(get_class_vars($className = get_class($activeRecord))))) {
-                throw new \Exception("\"$attributeName\" is not a member variable of class \"$className\"");
+                throw new \Exception("\"$attributeName\" is not a member variable of class \"$className\"!");
             }
         }
         catch (\Exception $e) {
-            echo $e->getMessage() . ' in file: ' . $e->getFile() . " at line: " . $e->getLine();
+            echo $e->getMessage();
             die;
         }
         return true;

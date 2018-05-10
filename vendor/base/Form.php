@@ -16,14 +16,6 @@ class Form {
     }
 
     public function field(ActiveRecord $activeRecord, $attributeName) {
-        try {
-            if (!$activeRecord) {
-                throw new \Exception('Object of class ' . get_class($activeRecord) .' no found!');
-            }
-        }
-        catch (\Exception $e) {
-            echo $e->getMessage() . ' in file: ' . $e->getFile() . ' at line: ' . $e->getLine();
-        }
         return new Field($activeRecord, $attributeName);
     }
 
