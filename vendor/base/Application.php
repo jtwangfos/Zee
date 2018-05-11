@@ -9,8 +9,8 @@ class Application {
     public $controller;
     public $action;
 
-    protected $controllerName;
-    protected $actionName;
+    public $controllerName;
+    public $actionName;
 
     protected $defaultController = 'index';
     protected $defaultAction = 'index';
@@ -83,7 +83,7 @@ class Application {
     private function getInstance() {
         $this->autoloadController();
         $class = self::CONTROLLER_NAMESPACE . $this->controllerName;
-        $action = $this->actionName;
+        $action = $this->action;
         $application = new $class($this);
         if (!empty($this->params)) {
             call_user_func_array([$application, $action], $this->params);

@@ -9,11 +9,25 @@ Class Controller implements IRequest {
     protected $app;
     public $request;
     public $response;
+    public $actionName;
 
     public function __construct(Application $application) {
         $this->app = $application;
         $this->request = $application->request;
         $this->response = $application->response;
+        $this->actionName = $application->actionName;
+    }
+
+    public function behaviors() {
+        return [
+            'access' => [
+                'class' => '',
+            ],
+        ];
+    }
+
+    public function beforeAction() {
+        return true;
     }
 
     // 渲染页面
@@ -35,6 +49,22 @@ Class Controller implements IRequest {
 
     public function redirect($url) {
         $this->response->redirect($url);
+    }
+
+    public function __call($method, $args) {
+        if (!method_exists($this, $method)) {
+            if ($this->beforeAction()) {
+                $before_some_action = 'before' . ucfirst($method);
+                $action = $this->actionName;
+                if (method_exists($this, $before_some_action)) {
+                    if ($this->$before_some_action()) {
+                        $this->$action();
+                    }
+                } else {
+                    $this->$action();
+                }
+            }
+        }
     }
 
 }
