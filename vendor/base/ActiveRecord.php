@@ -52,17 +52,16 @@ class ActiveRecord extends Model {
 
     // 保存
     public function save() {
-        $post = $_POST;
         $dbMapper = new DbMapper($this);
-        foreach ($post as $name => $value) {
-            $dbMapper->$name = $value;
-        }
         $validator = new Validator($dbMapper);
-        var_dump($validator->o);
         if ($validator->processRules($this->rules())) {
-            if ($this->insert($dbMapper)) {
-                return true;
+            foreach ($_POST as $name => $value) {
+                $dbMapper->$name = $value;
             }
+            die;
+//            if ($this->insert($dbMapper)) {
+//                return true;
+//            }
         }
         return false;
     }

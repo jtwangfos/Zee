@@ -26,13 +26,13 @@ class Validator {
             // 所需检验的参数名
             if (is_array($rule[0])) {
                 foreach ($rule[0] as $v) {
-                    if (!Rules::$validateFunc($v, $this->dbMapper->$v)) {
+                    if (!Rules::$validateFunc($v, $_POST[$v])) {
                         return false;
                     }
                 }
             } else {
                 $attributeName = $rule[0];
-                if (!Rules::$validateFunc($attributeName, $this->dbMapper->$attributeName)) {
+                if (!Rules::$validateFunc($attributeName, $_POST[$attributeName])) {
                     return false;
                 }
             }
