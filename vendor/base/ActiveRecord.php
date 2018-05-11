@@ -17,10 +17,18 @@ class ActiveRecord extends Model {
     protected static $tableName;
     protected static $primaryKey = 'id';
     protected static $Sql;
+    protected $className;
+
+    public function __construct() {
+        parent::__construct();
+        $this->className = get_class($this);
+    }
 
     public function tableName() {
         return static::$tableName;
     }
+
+    public function rules() {}
 
     public static function find(Array $select) {
         $dbMapper = new DbMapper(new static());
@@ -44,13 +52,16 @@ class ActiveRecord extends Model {
 
     // 保存
     public function save() {
-        $post = $_POST;
         $dbMapper = new DbMapper($this);
-        foreach ($post as $name => $value) {
-            $dbMapper->$name = $value;
-        }
-        if ($this->insert($dbMapper)) {
-            return true;
+        $validator = new Validator($dbMapper);
+        if ($validator->processRules($this->rules())) {
+            foreach ($_POST as $name => $value) {
+                $dbMapper->$name = $value;
+            }
+            die;
+//            if ($this->insert($dbMapper)) {
+//                return true;
+//            }
         }
         return false;
     }
@@ -108,6 +119,21 @@ class ActiveRecord extends Model {
             $arr[":$name"] = $value;
         }
         return $arr;
+    }
+
+    // setter
+    public function __set($name, $value) {
+
+    }
+
+    // getter
+    public function __get($name) {}
+
+    public function __toString() {
+        return json_encode([
+            'parentClass' => __CLASS__,
+            'className' => $this->className,
+        ]);
     }
 
 }

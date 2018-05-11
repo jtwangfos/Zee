@@ -1,6 +1,6 @@
 <?php
 use jt\base\Application; //框架核心
-error_reporting("E_ALL & ~ E_NOTICE");
+error_reporting(E_ALL & ~E_NOTICE);
 
 // 类的自动加载
 require_once '../vendor/autoload.php';

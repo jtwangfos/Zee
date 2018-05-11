@@ -7,11 +7,27 @@ use jt\base\Request;
 Class Controller implements IRequest {
 
     protected $app;
-    protected $request;
+    public $request;
+    public $response;
+    public $actionName;
 
     public function __construct(Application $application) {
         $this->app = $application;
-        $this->request = new Request;
+        $this->request = $application->request;
+        $this->response = $application->response;
+        $this->actionName = $application->actionName;
+    }
+
+    public function behaviors() {
+        return [
+            'access' => [
+                'class' => '',
+            ],
+        ];
+    }
+
+    public function beforeAction() {
+        return true;
     }
 
     // 渲染页面
@@ -29,6 +45,39 @@ Class Controller implements IRequest {
 
     public function isAjax() {
         return $this->request->isAjax();
+    }
+
+    public function redirect($url) {
+        $this->response->redirect($url);
+    }
+
+    // 从Application拦截要执行的action，从而执行beforeAction等一些操作
+    public function __call($method, $args) {
+        if (!method_exists($this, $method)) {
+            if ($this->beforeAction()) {
+                $before_some_action = 'before' . ucfirst($method);
+                $action = $this->actionName;
+                if (method_exists($this, $before_some_action)) {
+                    if ($this->$before_some_action()) {
+                        $this->executeAction($action, $args);
+                    }
+                } else {
+                    $this->executeAction($action, $args);
+                }
+            }
+        }
+    }
+
+    // 将要执行action的相同操作提出来以复用
+    protected function executeAction($action, $params) {
+        if (empty($params)) {
+            $this->$action();
+        } else {
+            foreach ($params as $v) {
+                $_GET[] = $v;
+            }
+            call_user_func_array([$this, $action], $params);
+        }
     }
 
 }

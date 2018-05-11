@@ -9,7 +9,7 @@ use jt\base\Controller;
  */
 class IndexController extends Controller {
 
-    public function indexAction() {
+    public function actionIndex() {
         $this->render('index', [
             'test' => '6666',
         ]);

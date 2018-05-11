@@ -26,7 +26,7 @@ class DbMapper {
         ) {
             if ($match[1] == 'set') {
                 $this->$attribute = $arguments[1];
-            } else {
+            } elseif ($match[1] == 'get') {
                 return $this->$attribute;
             }
         }
@@ -42,14 +42,20 @@ class DbMapper {
         }
     }
 
-    // 只能通过set方法操作成员变量
-    protected function __set($name, $value) {
+    /*
+        只能通过set方法操作成员变量
+        以达到检查活动记录是否有该成员变量
+    */
+    public function __set($name, $value) {
         $set = 'set' . $name;
         $this->$set($name, $value);
     }
 
-    // 只能通过get方法操作成员变量
-    protected function __get($name) {
+    /*
+        只能通过get方法操作成员变量
+        以达到检查活动记录是否有该成员变量
+    */
+    public function __get($name) {
         $get = 'get' . $name;
         $this->$get($name);
     }

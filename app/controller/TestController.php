@@ -13,11 +13,24 @@ use app\model\Test;
  */
 class TestController extends Controller {
 
-    public function helloAction() {
+    public function actionHello() {
 //        $res = Test::delete()->where(['id' => 1]);
 //        $res = Test::find(['a', 'b', 'id'])->where(['d' => 4, 'e' => 5])->one();
+        $model = new Test();
+        if ($this->isPost()) {
+            if ($model->save()) {
+                echo 'insert success!';
+            } else {
+                echo 'insert fail!';
+            }
+        }
         return $this->render('hello', [
 //            'res' => $res,
+            'model' => $model,
         ]);
     }
+
+//    public function beforeHello() {
+//
+//    }
 }
