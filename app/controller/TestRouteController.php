@@ -9,15 +9,15 @@
 namespace app\controller;
 
 
-class TestRouteController {
+use jt\base\Controller;
+
+class TestRouteController extends Controller {
 
     public function actionTestRoute() {
         echo 'it works!';
     }
 
     public function actionTestParams($a, $b) {
-        var_dump($a);
-        var_dump($b);
-        var_dump($_SERVER);
+        var_dump($_GET);
     }
 }

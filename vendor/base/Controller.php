@@ -51,6 +51,7 @@ Class Controller implements IRequest {
         $this->response->redirect($url);
     }
 
+    // 从Application拦截要执行的action，从而执行beforeAction等一些操作
     public function __call($method, $args) {
         if (!method_exists($this, $method)) {
             if ($this->beforeAction()) {
@@ -58,12 +59,24 @@ Class Controller implements IRequest {
                 $action = $this->actionName;
                 if (method_exists($this, $before_some_action)) {
                     if ($this->$before_some_action()) {
-                        $this->$action();
+                        $this->executeAction($action, $args);
                     }
                 } else {
-                    $this->$action();
+                    $this->executeAction($action, $args);
                 }
             }
+        }
+    }
+
+    // 将要执行action的相同操作提出来以复用
+    protected function executeAction($action, $params) {
+        if (empty($params)) {
+            $this->$action();
+        } else {
+            foreach ($params as $v) {
+                $_GET[] = $v;
+            }
+            call_user_func_array([$this, $action], $params);
         }
     }
 
