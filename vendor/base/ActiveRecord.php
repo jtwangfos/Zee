@@ -17,14 +17,18 @@ class ActiveRecord extends Model {
     protected static $tableName;
     protected static $primaryKey = 'id';
     protected static $Sql;
+    protected $className;
 
     public function __construct() {
         parent::__construct();
+        $this->className = get_class($this);
     }
 
     public function tableName() {
         return static::$tableName;
     }
+
+    public function rules() {}
 
     public static function find(Array $select) {
         $dbMapper = new DbMapper(new static());
@@ -53,8 +57,12 @@ class ActiveRecord extends Model {
         foreach ($post as $name => $value) {
             $dbMapper->$name = $value;
         }
-        if ($this->insert($dbMapper)) {
-            return true;
+        $validator = new Validator($dbMapper);
+        var_dump($validator->o);
+        if ($validator->processRules($this->rules())) {
+            if ($this->insert($dbMapper)) {
+                return true;
+            }
         }
         return false;
     }
@@ -120,5 +128,13 @@ class ActiveRecord extends Model {
     }
 
     // getter
+    public function __get($name) {}
+
+    public function __toString() {
+        return json_encode([
+            'parentClass' => __CLASS__,
+            'className' => $this->className,
+        ]);
+    }
 
 }
