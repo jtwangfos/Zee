@@ -14,18 +14,20 @@ use jt\base\DbMapper;
 
 class ActiveRecord extends Model {
 
-    protected static $tableName;
-    protected static $primaryKey = 'id';
     protected static $Sql;
     protected $className;
+
+    const DEFAULT_PRIMARY_KEY = 'id';
 
     public function __construct() {
         parent::__construct();
         $this->className = get_class($this);
     }
 
-    public function tableName() {
-        return static::$tableName;
+    public function tableName() {}
+
+    public function primaryKey() {
+        return self::DEFAULT_PRIMARY_KEY;
     }
 
     public function rules() {}

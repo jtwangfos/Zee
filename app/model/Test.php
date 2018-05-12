@@ -12,7 +12,7 @@ use jt\base\ActiveRecord;
  */
 class Test extends ActiveRecord {
 
-    protected static $tableName = 'c';
+//    protected static $tableName = 'c';
 
     public $a;
 
@@ -21,6 +21,10 @@ class Test extends ActiveRecord {
     public $d;
 
     public $e;
+
+    public function tableName() {
+        return 'c';
+    }
 
     public function rules() {
         return [
