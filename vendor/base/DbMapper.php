@@ -37,7 +37,7 @@ class DbMapper {
         if (in_array($attribute, array_keys(get_class_vars(get_class($this->activeRecordObject))))) {
             return $attribute;
         } else {
-            echo "Undefined member variable: '$attribute'! in class $this->activeRecordObject!";
+            echo "Undefined member variable: '" . $attribute . "'! in class $this->activeRecordObject!";
             exit;
         }
     }

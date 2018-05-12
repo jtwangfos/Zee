@@ -55,13 +55,9 @@ class ActiveRecord extends Model {
         $dbMapper = new DbMapper($this);
         $validator = new Validator($dbMapper);
         if ($validator->processRules($this->rules())) {
-            foreach ($_POST as $name => $value) {
-                $dbMapper->$name = $value;
+            if ($this->insert($dbMapper)) {
+                return true;
             }
-            die;
-//            if ($this->insert($dbMapper)) {
-//                return true;
-//            }
         }
         return false;
     }
@@ -87,8 +83,7 @@ class ActiveRecord extends Model {
     // 执行SQL INSERT 的方法
     protected function insert(DbMapper $dbMapper) {
         $Sql = new Sql($dbMapper);
-        $post = $dbMapper->attributes;
-        if ($this->query($Sql->insert($post))) {
+        if ($this->query($Sql->insert($_POST))) {
             return true;
         }
         return false;
