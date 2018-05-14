@@ -12,11 +12,13 @@ class Model {
 	    $username = $dbConfig['username'];
 	    $password = $dbConfig['password'];
 	    $options['charset'] = $dbConfig['charset'];
-	    try {
-	        self::$db = new \PDO($dsn, $username, $password, $options);
-	    } catch (\PDOException $e) {
-	        echo $e->getMessage();
-	    }
+//	    try {
+	        if (!self::$db = new \PDO($dsn, $username, $password, $options)) {
+	            throw new TopException('Can not connect to the database!');
+            }
+//	    } catch (\PDOException $e) {
+//	        echo $e->getMessage();
+//	    }
     }
 
 
