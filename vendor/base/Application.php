@@ -12,8 +12,8 @@ class Application {
     public $controllerName;
     public $actionName;
 
-    protected $defaultController = 'index';
-    protected $defaultAction = 'index';
+    protected $defaultController = 'Index';
+    protected $defaultAction = 'Index';
 
     public $request;
     public $response;
