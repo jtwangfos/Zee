@@ -9,7 +9,7 @@ namespace app\controllers;
  * Time: 下午10:51
  */
 use Zee\base\Controller;
-use app\model\Test;
+use app\models\Test;
 
 class TestController extends Controller {
 
