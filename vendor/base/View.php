@@ -32,7 +32,9 @@ Class View {
     // 包含模板
     protected function display($template, $params) {
         $this->assign($params);
-        extract($this->variable);
+        if (isset($this->variable)) {
+            extract($this->variable);
+        }
         $content = $template;
         $layout = self::VIEW_DIR . $this->defalutLayout;
         include $layout;
