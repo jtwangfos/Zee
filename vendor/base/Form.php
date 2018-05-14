@@ -1,7 +1,7 @@
 <?php
-namespace jt\base;
 
-use jt\base\Field;
+namespace Zee\base;
+
 
 class Form {
 
@@ -11,7 +11,7 @@ class Form {
         if ($config['method'] == 'get') {
             static::$method = 'get';
         }
-        echo "<form action='' method=" . static::$method .">";
+        echo "<form action='' method=" . static::$method . ">";
         return new static();
     }
 

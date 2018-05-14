@@ -1,8 +1,6 @@
 <?php
 
-namespace jt\base;
-
-use jt\base\Request;
+namespace Zee\base;
 
 Class Controller implements IRequest {
 
@@ -30,7 +28,8 @@ Class Controller implements IRequest {
         return true;
     }
 
-    public function afterAction() {}
+    public function afterAction() {
+    }
 
     // 渲染页面
     protected function render($template, $params = []) {

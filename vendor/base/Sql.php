@@ -1,12 +1,13 @@
 <?php
 
-namespace jt\base;
+namespace Zee\base;
 /**
  * Created by PhpStorm.
  * User: witness
  * Date: 2018/5/5
  * Time: 上午11:45
  */
+
 class Sql {
     /*
      * Sql类用于对sql语句的封装

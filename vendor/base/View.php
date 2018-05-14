@@ -1,6 +1,6 @@
 <?php
 
-namespace jt\base;
+namespace Zee\base;
 
 Class View {
 
@@ -8,14 +8,14 @@ Class View {
     protected $variable;
     protected $defalutLayout = 'layout.php';
 
-    const VIEW_DIR = __DIR__ . "/../../app/view/";
+    const VIEW_DIR = __DIR__ . "/../../app/views/";
 
     public function __construct(Application $application) {
         $this->app = $application;
     }
 
     // 渲染页面
-    public function render($template, $params =[]) {
+    public function render($template, $params = []) {
         $tpl = $this->getViewPath($template);
         $this->display($tpl, $params);
     }

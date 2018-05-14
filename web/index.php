@@ -1,5 +1,5 @@
 <?php
-use jt\base\Application; //框架核心
+use Zee\base\Application; //框架核心
 error_reporting(E_ALL & ~E_NOTICE);
 
 // 类的自动加载

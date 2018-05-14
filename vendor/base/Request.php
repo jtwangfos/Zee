@@ -1,12 +1,13 @@
 <?php
 
-namespace jt\base;
+namespace Zee\base;
 /**
  * Created by PhpStorm.
  * User: witness
  * Date: 2018/5/3
  * Time: 下午5:33
  */
+
 class Request implements IRequest {
 
     public function isPost() {

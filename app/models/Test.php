@@ -1,8 +1,6 @@
 <?php
 
-namespace app\model;
-
-use jt\base\ActiveRecord;
+namespace app\models;
 
 /**
  * Created by PhpStorm.
@@ -10,9 +8,9 @@ use jt\base\ActiveRecord;
  * Date: 2018/4/26
  * Time: 下午10:51
  */
-class Test extends ActiveRecord {
+use Zee\base\ActiveRecord;
 
-//    protected static $tableName = 'c';
+class Test extends ActiveRecord {
 
     public $a;
 
