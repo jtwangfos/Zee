@@ -88,6 +88,9 @@ Class Controller implements IRequest {
 
     // 将要执行action的相同操作提出来以复用
     protected function executeAction($action, $params) {
+        if (!method_exists($this, $action)) {
+            throw new TopException($action . ' requested does not exists!');
+        }
         if (empty($params)) {
             $this->$action();
         } else {
