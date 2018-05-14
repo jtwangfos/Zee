@@ -13,6 +13,10 @@ use app\models\Test;
 
 class TestController extends Controller {
 
+//    public function actionIndex() {
+//        echo 'hello';
+//    }
+
     public function actionHello() {
 //        $res = Test::delete()->where(['id' => 1]);
 //        $res = Test::find(['a', 'b', 'id'])->where(['d' => 4, 'e' => 5])->one();
