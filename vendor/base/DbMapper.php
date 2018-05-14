@@ -34,12 +34,21 @@ class DbMapper {
 
     // 验证是否为类的成员变量
     protected function validateAttribute($attribute) {
-        if (in_array($attribute, array_keys(get_class_vars(get_class($this->activeRecordObject))))) {
+//        try {
+            if (!in_array($attribute, array_keys(get_class_vars(get_class($this->activeRecordObject))))) {
+                throw new TopException("Undefined member variable '" . $attribute . "' in class $this->activeRecordObject");
+            }
             return $attribute;
-        } else {
-            echo "Undefined member variable: '$attribute'! in class $this->activeRecordObject!";
-            exit;
-        }
+//        } catch (\Exception $e) {
+//            echo 'Exception occured: <strong>' . $e->getMessage() .
+//                '</strong><br /> in file: <strong>' . $e->getFile() .
+//                '</strong><br /> at line: <strong>' . $e->getLine() .
+//                '</strong><br /><strong>Trace:</strong> ';
+//            foreach (explode('#', $e->getTraceAsString()) as $trace) {
+//                echo '<pre>' . $trace . '</pre>' . '<br />';
+//            }
+//            die;
+//        }
     }
 
     /*

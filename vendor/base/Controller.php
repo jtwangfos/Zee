@@ -30,6 +30,8 @@ Class Controller implements IRequest {
         return true;
     }
 
+    public function afterAction() {}
+
     // 渲染页面
     protected function render($template, $params = []) {
         return (new View($this->app))->render($template, $params);
@@ -47,24 +49,41 @@ Class Controller implements IRequest {
         return $this->request->isAjax();
     }
 
-    public function redirect($url) {
-        $this->response->redirect($url);
+    public function redirect($url, $statusCode = 301) {
+        $this->response->redirect($url, $statusCode);
     }
 
     // 从Application拦截要执行的action，从而执行beforeAction等一些操作
     public function __call($method, $args) {
         if (!method_exists($this, $method)) {
             if ($this->beforeAction()) {
-                $before_some_action = 'before' . ucfirst($method);
+                $before_some_action = 'before' . $method;
+                $after_some_action = 'after' . $method;
                 $action = $this->actionName;
                 if (method_exists($this, $before_some_action)) {
                     if ($this->$before_some_action()) {
                         $this->executeAction($action, $args);
+                        if (method_exists($this, $after_some_action)) {
+                            if ($this->$after_some_action()) {
+                                $this->afterAction();
+                                return;
+                            }
+                        }
+                        $this->afterAction();
                     }
                 } else {
                     $this->executeAction($action, $args);
+                    if (method_exists($this, $after_some_action)) {
+                        if ($this->$after_some_action()) {
+                            $this->afterAction();
+                            return;
+                        }
+                    }
+                    $this->afterAction();
                 }
             }
+        } else {
+            throw new TopException('Not found 404!');
         }
     }
 

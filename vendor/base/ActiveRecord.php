@@ -14,18 +14,20 @@ use jt\base\DbMapper;
 
 class ActiveRecord extends Model {
 
-    protected static $tableName;
-    protected static $primaryKey = 'id';
     protected static $Sql;
     protected $className;
+
+    const DEFAULT_PRIMARY_KEY = 'id';
 
     public function __construct() {
         parent::__construct();
         $this->className = get_class($this);
     }
 
-    public function tableName() {
-        return static::$tableName;
+    public function tableName() {}
+
+    public function primaryKey() {
+        return self::DEFAULT_PRIMARY_KEY;
     }
 
     public function rules() {}
@@ -55,13 +57,9 @@ class ActiveRecord extends Model {
         $dbMapper = new DbMapper($this);
         $validator = new Validator($dbMapper);
         if ($validator->processRules($this->rules())) {
-            foreach ($_POST as $name => $value) {
-                $dbMapper->$name = $value;
+            if ($this->insert($dbMapper)) {
+                return true;
             }
-            die;
-//            if ($this->insert($dbMapper)) {
-//                return true;
-//            }
         }
         return false;
     }
@@ -87,8 +85,7 @@ class ActiveRecord extends Model {
     // 执行SQL INSERT 的方法
     protected function insert(DbMapper $dbMapper) {
         $Sql = new Sql($dbMapper);
-        $post = $dbMapper->attributes;
-        if ($this->query($Sql->insert($post))) {
+        if ($this->query($Sql->insert($_POST))) {
             return true;
         }
         return false;
