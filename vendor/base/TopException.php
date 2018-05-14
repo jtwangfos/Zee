@@ -6,7 +6,7 @@
  * Time: 上午10:26
  */
 
-namespace jt\base;
+namespace Zee\base;
 
 
 use Throwable;

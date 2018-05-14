@@ -1,5 +1,5 @@
 <?php
-namespace jt\base;
+namespace Zee\base;
 
 class Model {
 

@@ -1,6 +1,7 @@
 <?php
 namespace app\controller;
-use jt\base\Controller;
+
+use Zee\base\Controller;
 /**
  * Created by PhpStorm.
  * User: witness

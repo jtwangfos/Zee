@@ -1,7 +1,6 @@
 <?php
-namespace jt\base;
+namespace Zee\base;
 
-use jt\base\Field;
 
 class Form {
 

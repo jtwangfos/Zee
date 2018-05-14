@@ -2,8 +2,7 @@
 
 namespace app\model;
 
-use jt\base\ActiveRecord;
-
+use Zee\base\ActiveRecord;
 /**
  * Created by PhpStorm.
  * User: witness
@@ -11,8 +10,6 @@ use jt\base\ActiveRecord;
  * Time: 下午10:51
  */
 class Test extends ActiveRecord {
-
-//    protected static $tableName = 'c';
 
     public $a;
 

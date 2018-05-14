@@ -1,6 +1,6 @@
 <?php
 
-namespace jt\base;
+namespace Zee\base;
 
 /**
  * Created by PhpStorm.
@@ -8,9 +8,6 @@ namespace jt\base;
  * Date: 2018/5/2
  * Time: 下午5:09
  */
-use jt\base\Model;
-use jt\base\DbObject;
-use jt\base\DbMapper;
 
 class ActiveRecord extends Model {
 

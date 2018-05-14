@@ -6,7 +6,7 @@
  * Time: 上午10:06
  */
 
-namespace jt\base;
+namespace Zee\base;
 
 
 class Validator {

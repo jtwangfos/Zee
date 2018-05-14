@@ -1,8 +1,6 @@
 <?php
 
-namespace jt\base;
-
-use jt\base\Request;
+namespace Zee\base;
 
 Class Controller implements IRequest {
 

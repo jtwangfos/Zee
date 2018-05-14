@@ -3,7 +3,7 @@
 // 类的自动加载
 function loadClass($className) {
     $classMap = [
-        "jt\base" => __DIR__ . "/base/",
+        "Zee\base" => __DIR__ . "/base/",
         "app\model" => __DIR__ . "/../app/model/",
     ];
 

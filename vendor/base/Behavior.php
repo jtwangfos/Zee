@@ -6,7 +6,7 @@
  * Time: 上午9:40
  */
 
-namespace jt\base;
+namespace Zee\base;
 
 
 class Behavior {

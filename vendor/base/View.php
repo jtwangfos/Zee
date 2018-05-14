@@ -1,6 +1,6 @@
 <?php
 
-namespace jt\base;
+namespace Zee\base;
 
 Class View {
 

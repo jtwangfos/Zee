@@ -2,7 +2,7 @@
 
 namespace app\controller;
 
-use jt\base\Controller;
+use Zee\base\Controller;
 use app\model\Test;
 
 /**
