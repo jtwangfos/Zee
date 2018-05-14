@@ -20,6 +20,7 @@ class TestController extends Controller {
         if ($this->isPost()) {
             if ($model->save()) {
                 echo 'insert success!';
+                $this->redirect('/');
             } else {
                 echo 'insert fail!';
             }

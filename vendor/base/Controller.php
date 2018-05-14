@@ -49,8 +49,8 @@ Class Controller implements IRequest {
         return $this->request->isAjax();
     }
 
-    public function redirect($url) {
-        $this->response->redirect($url);
+    public function redirect($url, $statusCode = 301) {
+        $this->response->redirect($url, $statusCode);
     }
 
     // 从Application拦截要执行的action，从而执行beforeAction等一些操作

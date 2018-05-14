@@ -17,9 +17,9 @@ class Response {
         $this->ifHttps = isset($_SERVER['HTTPS']) ? true : false;
     }
 
-    public function redirect($url) {
+    public function redirect($url, $statusCode = 301) {
         $url = ($this->ifHttps ? 'https://' : 'http://') . $this->web . $url;
-        header("Location: $url");
+        header("Location: $url", true, $statusCode);
         die;
     }
 }
