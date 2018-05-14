@@ -33,4 +33,20 @@ class TestController extends Controller {
 //    public function beforeHello() {
 //
 //    }
+
+    public function beforeHello() {
+        echo 'before';
+        return true;
+    }
+    public function afterHello() {
+        echo 'after';
+        return true;
+    }
+    public function beforeAction() {
+        echo 'beforeAction';
+        return true;
+    }
+    public function afterAction() {
+        echo 'afterAction';
+    }
 }
