@@ -1,4 +1,5 @@
 <?php
+
 namespace Zee\base;
 /**
  * Created by PhpStorm.
@@ -6,6 +7,7 @@ namespace Zee\base;
  * Date: 2018/5/9
  * Time: 下午4:52
  */
+
 interface IResponse {
 
     public function redirect();

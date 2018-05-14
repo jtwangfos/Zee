@@ -1,13 +1,13 @@
 <?php
+
+namespace Zee\base;
+
 /**
  * Created by PhpStorm.
  * User: witness
  * Date: 2018/5/14
  * Time: 上午10:26
  */
-
-namespace Zee\base;
-
 
 use Throwable;
 

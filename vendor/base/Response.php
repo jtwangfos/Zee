@@ -7,6 +7,7 @@ namespace Zee\base;
  * Date: 2018/5/9
  * Time: 下午4:53
  */
+
 class Response {
 
     protected $web;

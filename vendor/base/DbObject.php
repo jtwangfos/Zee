@@ -7,6 +7,7 @@ namespace Zee\base;
  * Date: 2018/5/2
  * Time: 下午8:29
  */
+
 class DbObject {
     /*
      * 该类用于将数据库查询的结果封装成对象

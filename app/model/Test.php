@@ -1,14 +1,15 @@
 <?php
 
-namespace app\model;
+namespace app\models;
 
-use Zee\base\ActiveRecord;
 /**
  * Created by PhpStorm.
  * User: witness
  * Date: 2018/4/26
  * Time: 下午10:51
  */
+use Zee\base\ActiveRecord;
+
 class Test extends ActiveRecord {
 
     public $a;

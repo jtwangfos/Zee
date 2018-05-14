@@ -19,8 +19,8 @@ class Application {
     public $response;
     public $params;
 
-    const CONTROLLER_DIR = __DIR__ . '/../../app/controller/';
-    const CONTROLLER_NAMESPACE = "app\\controller\\";
+    const CONTROLLER_DIR = __DIR__ . '/../../app/controllers/';
+    const CONTROLLER_NAMESPACE = "app\\controllers\\";
 
     public function __construct($config) {
         $this->request = new Request();
@@ -59,8 +59,8 @@ class Application {
         $action = array_shift($uri_arr);
         return [
             'controller' => $controller,
-            'action' => $action,
-            'params' => $uri_arr,
+            'action'     => $action,
+            'params'     => $uri_arr,
         ];
     }
 
@@ -96,7 +96,7 @@ class Application {
     private function autoloadController() {
         $autoloadController = function ($controller) {
             $controllerMap = [
-                'app\\controller' => self::CONTROLLER_DIR,
+                'app\\controllers' => self::CONTROLLER_DIR,
             ];
             $parts = explode("\\", $controller);
             $controllerName = array_pop($parts);

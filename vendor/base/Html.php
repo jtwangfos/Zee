@@ -1,4 +1,5 @@
 <?php
+
 namespace Zee\base;
 /**
  * Created by PhpStorm.
@@ -6,6 +7,7 @@ namespace Zee\base;
  * Date: 2018/5/8
  * Time: 下午11:02
  */
+
 class Html {
 
     public static function submitButton($name) {

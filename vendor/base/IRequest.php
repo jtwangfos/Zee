@@ -7,6 +7,7 @@ namespace Zee\base;
  * Date: 2018/5/3
  * Time: 下午5:38
  */
+
 interface IRequest {
     public function isPost();
 

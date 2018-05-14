@@ -11,6 +11,6 @@
 
 </head>
 <body>
-    <?php include $content; ?>
+<?php include $content; ?>
 </body>
 </html>

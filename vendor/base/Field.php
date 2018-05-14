@@ -1,4 +1,5 @@
 <?php
+
 namespace Zee\base;
 /**
  * Created by PhpStorm.
@@ -6,13 +7,14 @@ namespace Zee\base;
  * Date: 2018/5/8
  * Time: 下午2:51
  */
+
 class Field {
 
     protected $attributeName;
     protected $input;
     protected $label;
 
-    public function  __construct(ActiveRecord $activeRecord, $attributeName) {
+    public function __construct(ActiveRecord $activeRecord, $attributeName) {
         if ($this->ifAttributesExists($activeRecord, $attributeName)) {
             $this->attributeName = $attributeName;
         }
@@ -29,15 +31,9 @@ class Field {
     }
 
     protected function ifAttributesExists(ActiveRecord $activeRecord, $attributeName) {
-//        try {
-            if (!in_array($attributeName, array_keys(get_class_vars($className = get_class($activeRecord))))) {
-                throw new TopException("\"$attributeName\" is not a member variable of class \"$className\"!");
-            }
-//        }
-//        catch (\Exception $e) {
-//            echo $e->getMessage();
-//            die;
-//        }
+        if (!in_array($attributeName, array_keys(get_class_vars($className = get_class($activeRecord))))) {
+            throw new TopException("\"$attributeName\" is not a member variable of class \"$className\"!");
+        }
         return true;
     }
 

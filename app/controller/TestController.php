@@ -1,9 +1,6 @@
 <?php
 
-namespace app\controller;
-
-use Zee\base\Controller;
-use app\model\Test;
+namespace app\controllers;
 
 /**
  * Created by PhpStorm.
@@ -11,6 +8,9 @@ use app\model\Test;
  * Date: 2018/4/25
  * Time: 下午10:51
  */
+use Zee\base\Controller;
+use app\model\Test;
+
 class TestController extends Controller {
 
     public function actionHello() {
@@ -39,14 +39,17 @@ class TestController extends Controller {
         echo 'before';
         return true;
     }
+
     public function afterHello() {
         echo 'after';
         return true;
     }
+
     public function beforeAction() {
         echo 'beforeAction';
         return true;
     }
+
     public function afterAction() {
         echo 'afterAction';
     }

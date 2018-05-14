@@ -21,13 +21,15 @@ class ActiveRecord extends Model {
         $this->className = get_class($this);
     }
 
-    public function tableName() {}
+    public function tableName() {
+    }
 
     public function primaryKey() {
         return self::DEFAULT_PRIMARY_KEY;
     }
 
-    public function rules() {}
+    public function rules() {
+    }
 
     public static function find(Array $select) {
         $dbMapper = new DbMapper(new static());
@@ -71,6 +73,7 @@ class ActiveRecord extends Model {
         $res = $stmt->$action(\PDO::FETCH_ASSOC);
         return new DbObject(get_class($this), $res);
     }
+
     // 具体执行SQL DELETE 的方法
     public function execDelete(Sql $sql, $_sql) {
         $stmt = self::$db->prepare($_sql);
@@ -121,12 +124,13 @@ class ActiveRecord extends Model {
     }
 
     // getter
-    public function __get($name) {}
+    public function __get($name) {
+    }
 
     public function __toString() {
         return json_encode([
             'parentClass' => __CLASS__,
-            'className' => $this->className,
+            'className'   => $this->className,
         ]);
     }
 

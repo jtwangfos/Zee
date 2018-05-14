@@ -3,8 +3,8 @@
 // 类的自动加载
 function loadClass($className) {
     $classMap = [
-        "Zee\base" => __DIR__ . "/base/",
-        "app\model" => __DIR__ . "/../app/model/",
+        "Zee\base"  => __DIR__ . "/base/",
+        "app\models" => __DIR__ . "/../app/models/",
     ];
 
     $parts = explode('\\', $className);

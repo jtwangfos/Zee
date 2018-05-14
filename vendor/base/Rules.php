@@ -1,4 +1,6 @@
 <?php
+
+namespace Zee\base;
 /**
  * Created by PhpStorm.
  * User: witness
@@ -6,12 +8,10 @@
  * Time: 下午3:12
  */
 
-namespace Zee\base;
-
-
 class Rules {
 
-    protected function __construct() {}
+    protected function __construct() {
+    }
 
     public static function int($name, $num) {
         if (preg_match('/^\s*[+-]?\d+\s*$/', $num)) {

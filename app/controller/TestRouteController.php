@@ -1,5 +1,6 @@
 <?php
-namespace app\controller;
+
+namespace app\controllers;
 
 /**
  * Created by PhpStorm.
@@ -7,6 +8,7 @@ namespace app\controller;
  * Date: 2018/5/9
  * Time: 下午5:56
  */
+
 use Zee\base\Controller;
 
 class TestRouteController extends Controller {
