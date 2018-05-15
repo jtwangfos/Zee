@@ -51,4 +51,12 @@ class Rules {
         }
     }
 
+    public static function required($name, $value) {
+        if (empty($value)) {
+            echo "$name is required!";
+            die;
+        }
+        return true;
+    }
+
 }
