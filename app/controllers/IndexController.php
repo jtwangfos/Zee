@@ -13,8 +13,6 @@ use Zee\base\Controller;
 class IndexController extends Controller {
 
     public function actionIndex() {
-        $this->render('index', [
-            'test' => '6666',
-        ]);
+        $this->render('index', []);
     }
 }

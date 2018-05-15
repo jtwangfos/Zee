@@ -8,7 +8,7 @@ Class View {
     protected $variable;
     protected $defalutLayout = 'layout.php';
 
-    const VIEW_DIR = __DIR__ . "/../../app/views/";
+    const VIEW_DIR = __DIR__ . '/../../app/views/';
 
     public function __construct(Application $application) {
         $this->app = $application;
