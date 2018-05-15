@@ -15,16 +15,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/png" href="favicon.png">
 
-    <link rel="stylesheet" type="text/css" href="./public/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="./public/css/style.css">
-    <link rel="stylesheet" type="text/css" href="./public/css/animate.min.css">
-    <link rel="stylesheet" type="text/css" href="./public/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/font-awesome.min.css">
 
 
-    <script src="./public/js/jquery-2.1.0.min.js"></script>
-    <script src="./public/js/bootstrap.min.js"></script>
-    <script src="./public/js/blocs.min.js"></script>
-    <script src="./public/js/lazysizes.min.js" defer></script>
+    <script src="/public/js/jquery-2.1.0.min.js"></script>
+    <script src="/public/js/bootstrap.min.js"></script>
+    <script src="/public/js/blocs.min.js"></script>
+    <script src="/public/js/lazysizes.min.js" defer></script>
     <title>Home</title>
 
 
@@ -42,7 +42,7 @@
         <div class="container bloc-sm">
             <nav class="navbar row">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="/"><img src="./public/img/logo.png" alt="logo" />Company</a>
+                    <a class="navbar-brand" href="/"><img src="/public/img/logo.png" alt="logo" />My Blog</a>
                     <button id="nav-toggle" type="button" class="ui-navbar-toggle navbar-toggle" data-toggle="collapse" data-target=".navbar-1">
                         <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
                     </button>
