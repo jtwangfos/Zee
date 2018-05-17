@@ -1,0 +1,18 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: witness
+ * Date: 2018/5/17
+ * Time: 上午11:57
+ */
+
+namespace app\controllers;
+
+use Zee\base\Controller;
+
+class BackendController extends Controller{
+
+    public function actionLogin() {
+
+    }
+}

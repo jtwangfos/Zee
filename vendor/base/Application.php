@@ -22,6 +22,9 @@ class Application {
     const CONTROLLER_DIR = __DIR__ . '/../../app/controllers/';
     const CONTROLLER_NAMESPACE = "app\\controllers\\";
 
+    const ASSETS_BUNDLE_DIR = __DIR__ . '/../../app/assets/';
+    const ASSETS_BUNDLE_NAMESPACE = "app\\assets\\";
+
     public function __construct($config) {
         $this->request = new Request();
         $this->response = new Response();
@@ -116,6 +119,7 @@ class Application {
         $autoloadController = function ($controller) {
             $controllerMap = [
                 'app\\controllers' => self::CONTROLLER_DIR,
+                'app\\assets' => self::ASSETS_BUNDLE_DIR,
             ];
             $parts = explode("\\", $controller);
             $controllerName = array_pop($parts);

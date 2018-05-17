@@ -8,6 +8,7 @@ Class Controller implements IRequest {
     public $request;
     public $response;
     public $actionName;
+    protected $layout;
 
     public function __construct(Application $application) {
         $this->app = $application;
@@ -33,7 +34,7 @@ Class Controller implements IRequest {
 
     // 渲染页面
     protected function render($template, $params = []) {
-        return (new View($this->app))->render($template, $params);
+        return (new View($this->app, $this->layout))->render($template, $params);
     }
 
     public function isPost() {

@@ -6,12 +6,14 @@ Class View {
 
     protected $app;
     protected $variable;
+    protected $layout;
     protected $defalutLayout = 'layout.php';
 
     const VIEW_DIR = __DIR__ . '/../../app/views/';
 
-    public function __construct(Application $application) {
+    public function __construct(Application $application, $layout = null) {
         $this->app = $application;
+        $this->layout = $layout;
     }
 
     // 渲染页面
@@ -36,7 +38,7 @@ Class View {
             extract($this->variable);
         }
         $content = $template;
-        $layout = self::VIEW_DIR . $this->defalutLayout;
+        $layout = self::VIEW_DIR . ($this->layout ? $this->layout : $this->defalutLayout);
         include $layout;
     }
 
@@ -48,5 +50,16 @@ Class View {
     // layout头部
     protected function head() {
 
+    }
+
+    // 注册资源
+    public function registerAssets(AssetBundle $assetBundle) {
+        $asset = $assetBundle->load();
+        foreach ($asset['css'] as $c) {
+            echo $c;
+        }
+        foreach ($asset['js'] as $j) {
+            echo $j;
+        }
     }
 }

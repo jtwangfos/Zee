@@ -5,6 +5,7 @@
  * Date: 2018/5/5
  * Time: 下午6:07
  */
+use app\assets\FrontendAssetBundle;
 ?>
 <!doctype html>
 <html>
@@ -14,17 +15,17 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/png" href="/favicon.png">
-
-    <link rel="stylesheet" type="text/css" href="/public/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/public/css/style.css">
-    <link rel="stylesheet" type="text/css" href="/public/css/animate.min.css">
-    <link rel="stylesheet" type="text/css" href="/public/css/font-awesome.min.css">
-
-
-    <script src="/public/js/jquery-2.1.0.min.js"></script>
-    <script src="/public/js/bootstrap.min.js"></script>
-    <script src="/public/js/blocs.min.js"></script>
-    <script src="/public/js/lazysizes.min.js" defer></script>
+    <?php $this->registerAssets(new FrontendAssetBundle) ?>
+<!--    <link rel="stylesheet" type="text/css" href="/public/css/bootstrap.min.css">-->
+<!--    <link rel="stylesheet" type="text/css" href="/public/css/style.css">-->
+<!--    <link rel="stylesheet" type="text/css" href="/public/css/animate.min.css">-->
+<!--    <link rel="stylesheet" type="text/css" href="/public/css/font-awesome.min.css">-->
+<!---->
+<!---->
+<!--    <script src="/public/js/jquery-2.1.0.min.js"></script>-->
+<!--    <script src="/public/js/bootstrap.min.js"></script>-->
+<!--    <script src="/public/js/blocs.min.js"></script>-->
+<!--    <script src="/public/js/lazysizes.min.js" defer></script>-->
     <title>Home</title>
 
 
