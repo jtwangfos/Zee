@@ -2,10 +2,10 @@
 /**
  * Created by PhpStorm.
  * User: witness
- * Date: 2018/5/5
- * Time: 下午6:07
+ * Date: 2018/5/17
+ * Time: 下午8:57
  */
-use app\assets\FrontendAssetBundle;
+use app\assets\BackendAssetBundle;
 ?>
 <!doctype html>
 <html>
@@ -15,17 +15,17 @@ use app\assets\FrontendAssetBundle;
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/png" href="/favicon.png">
-    <?php $this->registerAssets(new FrontendAssetBundle) ?>
-<!--    <link rel="stylesheet" type="text/css" href="/public/css/bootstrap.min.css">-->
-<!--    <link rel="stylesheet" type="text/css" href="/public/css/style.css">-->
-<!--    <link rel="stylesheet" type="text/css" href="/public/css/animate.min.css">-->
-<!--    <link rel="stylesheet" type="text/css" href="/public/css/font-awesome.min.css">-->
+    <?php $this->registerAssets(new BackendAssetBundle) ?>
+
+<!--    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">-->
+<!--    <link rel="stylesheet" type="text/css" href="style.css">-->
+<!--    <link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css">-->
 <!---->
 <!---->
-<!--    <script src="/public/js/jquery-2.1.0.min.js"></script>-->
-<!--    <script src="/public/js/bootstrap.min.js"></script>-->
-<!--    <script src="/public/js/blocs.min.js"></script>-->
-<!--    <script src="/public/js/lazysizes.min.js" defer></script>-->
+<!--    <script src="./js/jquery-2.1.0.min.js"></script>-->
+<!--    <script src="./js/bootstrap.min.js"></script>-->
+<!--    <script src="./js/blocs.min.js"></script>-->
+<!--    <script src="./js/lazysizes.min.js" defer></script>-->
     <title>Home</title>
 
 
@@ -39,22 +39,19 @@ use app\assets\FrontendAssetBundle;
 <div class="page-container">
 
     <!-- bloc-0 -->
-    <div class="bloc l-bloc bgc-white none" id="bloc-0">
+    <div class="bloc l-bloc bgc-white" id="bloc-0">
         <div class="container bloc-sm">
             <nav class="navbar row">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="/"><img src="/public/img/logo.png" alt="logo" />My Blog</a>
+                    <a class="navbar-brand" href="index.html"><img src="/public/img/logo.png" alt="logo" />Company</a>
                     <button id="nav-toggle" type="button" class="ui-navbar-toggle navbar-toggle" data-toggle="collapse" data-target=".navbar-1">
                         <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
                     </button>
                 </div>
-                <div class="collapse navbar-collapse navbar-1 special-dropdown-nav">
-                    <ul class="site-navigation nav navbar-nav animated fadeInRight none">
+                <div class="collapse navbar-collapse navbar-1">
+                    <ul class="site-navigation nav navbar-nav">
                         <li>
-                            <a href="/">Home</a>
-                        </li>
-                        <li>
-                            <a href="/contract">Contract</a>
+                            <a href="/backend/index">Home</a>
                         </li>
                     </ul>
                 </div>
@@ -64,7 +61,7 @@ use app\assets\FrontendAssetBundle;
     <!-- bloc-0 END -->
 
     <!-- bloc-1 -->
-    <?php include $content;?>
+    <?php include $content; ?>
     <!-- bloc-1 END -->
 
     <!-- ScrollToTop Button -->
@@ -72,8 +69,8 @@ use app\assets\FrontendAssetBundle;
     <!-- ScrollToTop Button END-->
 
 
-    <!-- Footer - bloc-4 -->
-    <div class="bloc bgc-white l-bloc" id="bloc-4">
+    <!-- Footer - bloc-2 -->
+    <div class="bloc bgc-white l-bloc" id="bloc-2">
         <div class="container bloc-lg">
             <div class="row">
                 <div class="col-sm-3">
@@ -99,7 +96,7 @@ use app\assets\FrontendAssetBundle;
             </div>
         </div>
     </div>
-    <!-- Footer - bloc-4 END -->
+    <!-- Footer - bloc-2 END -->
 
 </div>
 <!-- Main container END -->

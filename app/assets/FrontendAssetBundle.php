@@ -11,15 +11,15 @@ use Zee\base\AssetBundle;
 class FrontendAssetBundle extends AssetBundle {
 
     public $css = [
-        'bootstrap.min.css',
-        'style.css',
-        'animate.min.css',
-        'font-awesome.min.css',
+        'frontend/bootstrap.min.css',
+        'frontend/style.css',
+        'frontend/animate.min.css',
+        'frontend/font-awesome.min.css',
     ];
     public $js = [
-        'jquery-2.1.0.min.js',
-        'bootstrap.min.js',
-        'blocs.min.js',
-        'lazysizes.min.js',
+        'frontend/jquery-2.1.0.min.js',
+        'frontend/bootstrap.min.js',
+        'frontend/blocs.min.js',
+        'frontend/lazysizes.min.js',
     ];
 }

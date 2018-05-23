@@ -38,7 +38,7 @@ Class View {
             extract($this->variable);
         }
         $content = $template;
-        $layout = self::VIEW_DIR . ($this->layout ? $this->layout : $this->defalutLayout);
+        $layout = self::VIEW_DIR . 'layout/' . ($this->layout ? $this->layout : $this->defalutLayout);
         include $layout;
     }
 

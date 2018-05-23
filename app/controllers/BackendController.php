@@ -12,7 +12,12 @@ use Zee\base\Controller;
 
 class BackendController extends Controller{
 
-    public function actionLogin() {
+    public $layout = 'backend.php';
 
+    public function actionIndex() {
+        return $this->render('index');
+    }
+    public function actionLogin() {
+        return $this->render('login');
     }
 }

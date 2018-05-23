@@ -8,7 +8,7 @@ Class Controller implements IRequest {
     public $request;
     public $response;
     public $actionName;
-    protected $layout;
+    public $layout;
 
     public function __construct(Application $application) {
         $this->app = $application;

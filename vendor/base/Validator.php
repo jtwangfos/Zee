@@ -16,6 +16,14 @@ class Validator {
         $this->dbMapper = $dbMapper;
     }
 
+    protected function beforeValidate() {
+        return true;
+    }
+
+    protected function afterValidate() {
+
+    }
+
     public function processRules($rules) {
         if (empty($rules)) {
             return true;
